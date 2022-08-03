@@ -1,0 +1,32 @@
+【第8课】: 阴阳太极-自定义01  
+阴阳太极可以继续升级
+继续完整它
+你又发现一个问题
+如果不要下注一个lot
+可不可以简单的修改lotsize?
+解决方案就是给ea添加<自定义>
+如果你学会了《自定义》
+很多东西是可以《自定义》的
+编写结果。。。。
+datetime 限制一根柱子下注一次 =0; //自定义
+double 下注数量=0.1; //自定义
+int start()
+{
+if(
+OrdersTotal()==0
+&& Close[0]>Open[0]
+&& 限制一根柱子下注一次 !=Time[0]
+) {
+OrderSend(Symbol(),OP_BUY,下注数量,Ask,3,Ask-200*Point,Ask+200*Point,"macd sample",16384,0,Green);
+限制一根柱子下注一次 =Time[0];
+}
+if(
+OrdersTotal()==0
+&& Close[0]<Open[0]
+&& 限制一根柱子下注一次 !=Time[0]
+){
+OrderSend(Symbol(),OP_SELL,下注数量,Bid,3,Bid+200*Point,Bid-200*Point,"macd sample",16384,0,Red);
+限制一根柱子下注一次 =Time[0];
+}
+return(0);
+}
