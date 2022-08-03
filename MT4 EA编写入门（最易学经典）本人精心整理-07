@@ -1,0 +1,29 @@
+【第7课】: 阴阳太极-升级
+阴阳太极可以继续升级
+继续完整他
+你会发现这ea不够完整
+比如：会在同一根柱子下注超过一次
+这个问题的解决方案就是给ea添加时间条件
+条件：限制一根柱子下注一次 ！=Time[0]
+编写结果。。。。
+datetime 限制一根柱子下注一次 =0;  //自定义
+int start()
+{
+if(
+OrdersTotal()==0
+&& Close[0]>Open[0]
+&& 限制一根柱子下注一次 !=Time[0]
+){
+OrderSend(Symbol(),OP_BUY,1,Ask,3,Ask-200*Point,Ask+200*Point,"macd sample",16384,0,Green);
+限制一根柱子下注一次 =Time[0];
+}
+if(
+OrdersTotal()==0
+&& Close[0]<Open[0]
+&& 限制一根柱子下注一次 !=Time[0]
+){
+OrderSend(Symbol(),OP_SELL,1,Bid,3,Bid+200*Point,Bid-200*Point,"macd sample",16384,0,Red);
+限制一根柱子下注一次 =Time[0];
+}
+return(0);
+}
