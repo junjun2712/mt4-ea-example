@@ -1,0 +1,85 @@
+【第六课】:阴阳太极
+首先教你第一招：阴阳太极
+打开你的metaeditor
+打开你的my1ea002
+我先用中文编写一次
+你就明白我们等下要编写什么
+我们要编写。。。
+如果（
+没有任何单
+和 青bar   //上升的趋势
+）{可以下注买上的单}
+如果（
+没有任何单
+和 红bar   //代表下降低趋势
+）{可以下注买下的单}
+ok
+就这么简单
+你还记得要要求ea的编写方程式吗？
+对，就是
+if(){}
+编写结果如下：
+//+------------------------------------------------------------------+
+//| my1ea.mq4 |
+//| http://www.mt4ea,com |
+//+------------------------------------------------------------------+
+#property copyright "Copyright ?2009, 柒侠伍义"
+#property link "http://www.mt4ea,com"
+//+------------------------------------------------------------------+
+//| expert initialization function |
+//+------------------------------------------------------------------+
+int init()
+{
+//----
+//----
+return(0);
+}
+//+------------------------------------------------------------------+
+//| expert deinitialization function |
+//+------------------------------------------------------------------+
+int deinit()
+{
+//----
+//----
+return(0);
+}
+//+------------------------------------------------------------------+
+//| expert start function |
+//+------------------------------------------------------------------+
+int start()
+{
+//----
+if(
+OrdersTotal()==0
+&& Close[0]>Open[0]
+){
+OrderSend(Symbol(),OP_BUY,Lots,Ask,3,0,Ask+TakeProfit*Point,"macd sample",16384,0,Green);
+}
+if(
+OrdersTotal()==0
+&& Close[0]<Open[0]
+){
+OrderSend(Symbol(),OP_SELL,Lots,Bid,3,0,Bid-TakeProfit*Point,"macd sample",16384,0,Red);
+}
+//----
+return(0);
+}
+//+------------------------------------------------------------------+　
+OrderSend(Symbol(),OP_SELL,Lots,Bid,3,0,Bid-TakeProfit*Point,"macd sample",16384,0,Red);
+OrderSend(Symbol(),OP_BUY,Lots,Ask,3,0,Ask+TakeProfit*Point,"macd sample",16384,0,Green);
+以上两个OrderSend是从macd sample
+copy & press 过来的
+还没有结束。。。。
+把这两个改一改就可以了
+OrderSend(Symbol(),OP_SELL,Lots,Bid,3,0,Bid-TakeProfit*Point,"macd sample",16384,0,Red);
+OrderSend(Symbol(),OP_BUY,Lots,Ask,3,0,Ask+TakeProfit*Point,"macd sample",16384,0,Green);
+Lots改成1
+TakeProfit改成200
+0 改成Bid+200*Point
+0 改成Ask-200*Point
+变成
+OrderSend(Symbol(),OP_SELL,1,Bid,3,Bid-+200*Point,Bid-200*Point,"macd sample",16384,0,Red);
+OrderSend(Symbol(),OP_BUY,1,Ask,3,Ask-200*Point,Ask+200*Point,"macd sample",16384,0,Green);
+按《编写》
+如果0错误 0警告
+你的my1ea002成功了
