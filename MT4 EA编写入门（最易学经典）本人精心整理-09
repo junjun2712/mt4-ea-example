@@ -1,0 +1,28 @@
+【第9课】: 阴阳太极-自定义02
+1.人真的麻烦，多事是人的天性,你又发现。。。为什么没有《自定义》stoploss？为什么没有《自定义》takeprofit？
+2.你不是刚刚学会《自定义》吗？给ea添加修改就可以了
+3.编写如下：
+datetime 限制一根柱子下注一次 =0; //自定义
+double 下注数量=0.1; //自定义
+double 止损=200; //自定义
+double 止盈=200; //自定义
+int start()
+{
+if(
+OrdersTotal()==0
+&& Close[0]>Open[0]
+&& 限制一根柱子下注一次 !=Time[0]
+){
+OrderSend(Symbol(),OP_BUY,下注数量,Ask,3,Ask-止损*Point,Ask+止盈*Point,"macd sample",16384,0,Green);
+限制一根柱子下注一次 =Time[0];
+}
+if(
+OrdersTotal()==0
+&& Close[0]<Open[0]
+&& 限制一根柱子下注一次 !=Time[0]
+){
+OrderSend(Symbol(),OP_SELL,下注数量,Bid,3,Bid+止损*Point,Bid-止盈*Point,"macd sample",16384,0,Red);
+限制一根柱子下注一次 =Time[0];
+}
+return(0);
+}
