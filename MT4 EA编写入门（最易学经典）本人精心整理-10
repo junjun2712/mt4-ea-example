@@ -1,0 +1,41 @@
+【第10课】: 你可以创造无穷无尽的策略
+人真的厉害
+当你学会了编写ea
+你的《脑》不停的转动
+你又发现。。。
+你又发现。。。
+你又要怎样怎样。。。
+你又要怎样怎样。。。
+无穷无尽的。。。
+把这个条件加入你的ea
+IsDemo（）
+这个可以避免人为错误
+把不成熟的ea去玩真钱外汇
+当你把这条件加入ea
+这ea只能在假的户口运行
+编写结果：
+datetime 限制一根柱子下注一次 =0; //自定义
+double 下注数量=0.1; //自定义
+double 止损=200; //自定义
+double 止盈=200; //自定义
+int start()
+{
+if(
+OrdersTotal()==0
+&& Close[0]>Open[0]
+&& 限制一根柱子下注一次 !=Time[0]
+&& IsDemo()
+){
+OrderSend(Symbol(),OP_BUY,下注数量,Ask,3,Ask-止损*Point,Ask+止盈*Point,"macd sample",16384,0,Green);
+限制一根柱子下注一次 =Time[0];
+}
+if(
+OrdersTotal()==0
+&& Close[0]<Open[0]
+&& 限制一根柱子下注一次 !=Time[0]
+&& IsDemo()
+){
+OrderSend(Symbol(),OP_SELL,下注数量,Bid,3,Bid+止损*Point,Bid-止盈*Point,"macd sample",16384,0,Red);
+限制一根柱子下注一次 =Time[0];
+}
+return(0);
