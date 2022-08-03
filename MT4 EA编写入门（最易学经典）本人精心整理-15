@@ -1,0 +1,37 @@
+【第15课】：修改ea的上升趋势点,使判断更加准确
+datetime 限制一根柱子下注一次 =0; //自定义
+double 下注数量=0.1; //自定义
+double 止损=200; //自定义
+double 止盈=200; //自定义
+int start() //ea 开始运行
+{
+if( //如果
+OrdersTotal()==0 //没有单可以下注
+&& Close[0]-Open[0]>200*Point //判断上升趋势
+&& 限制一根柱子下注一次 !=Time[0] //限制一根柱子下注一次
+&& IsDemo() //限制模拟户口运行
+&& DayOfWeek() !=0 //礼拜不要交易
+&& DayOfWeek() !=6 //星期6不要交易
+&& DayOfWeek() !=5 //星期5不要交易
+&& (Hour()>3&&Hour()<22) //限制交易时间：早上3点到晚上10点可以交易
+&& Year()==2009 //限制交易时间：只限2009年可以运行
+){
+OrderSend(Symbol(),OP_BUY,下注数量,Ask,3,Ask-止损*Point,Ask+止盈*Point,"macd sample",16384,0,Green);
+限制一根柱子下注一次 =Time[0];
+}
+if( //如果
+OrdersTotal()==0 //没有单可以下注
+&& Open[0]-Close[0]>200*Point //判断下降趋势
+&& 限制一根柱子下注一次 !=Time[0] //限制一根柱子下注一次
+&& IsDemo() //限制模拟户口运行
+&& DayOfWeek() !=0 //礼拜不要交易
+&& DayOfWeek() !=6 //星期6不要交易
+&& DayOfWeek() !=5 //星期5不要交易
+&& (Hour()>3&&Hour()<22) //限制交易时间：早上3点到晚上10点可以交易
+&& Year()==2009 //限制交易时间：只限2009年可以运行
+){
+OrderSend(Symbol(),OP_SELL,下注数量,Bid,3,Bid+止损*Point,Bid-止盈*Point,"macd sample",16384,0,Red);
+限制一根柱子下注一次 =Time[0];
+}
+return(0); //叫 ea 重复运行 每秒大概可能重新运算100次
+}
