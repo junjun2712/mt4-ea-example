@@ -33,3 +33,16 @@ OP_SELLSTOP - 挂单停止限定。
     }
   else
     Print("OrderSelect() 返回错误 - ",GetLastError());
+    
+    
+double OrderProfit( )
+对于选择定单返回净盈利值 (除掉期和佣金外)。对于开仓位当前不真实盈利。对于平仓为固定盈利。
+对于当前选择定单返回盈利。
+
+注解:定单必须用OrderSelect()函数提前选定。
+
+示例:
+  if(OrderSelect(10, SELECT_BY_POS)==true)
+    Print("定单 10 盈利",OrderProfit());
+  else
+    Print("OrderSelect返回的错误",GetLastError());
